@@ -124,6 +124,7 @@ const Game = () => {
             alt={currentCountry.name.common}
             className="img-fluid mb-3"
           />
+          <p className="text-success">Streak: {streak} </p>
 
           <form onSubmit={nextCountry}>
             <div className="input-group mb-3">
@@ -158,7 +159,6 @@ const Game = () => {
               />
             ))}
           </p>
-          <p className="text-success">Streak: {streak} </p>
           {errorMessage && <p className="text-danger">{errorMessage}</p>}
         </div>
       )}
