@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button } from "react-bootstrap";
+import axios from "axios";
 import "../main.css";
 
 const Americas = () => {
+  const isLogged = localStorage.getItem("isLogged");
+  if (!isLogged) {
+    window.location.href = "/login";
+  }
+
   const url = "https://restcountries.com/v3.1/all";
   const [shuffledCountries, setShuffledCountries] = useState([]);
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
@@ -12,6 +18,7 @@ const Americas = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [remainingTries, setRemainingTries] = useState(5);
   const [streak, setStreak] = useState(0);
+  const [score, setScore] = useState(0); // Added score state
   const [suggestedCountries, setSuggestedCountries] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -39,6 +46,24 @@ const Americas = () => {
     }
   };
 
+  const ScoreUpdate = async () => {
+    const username = localStorage.getItem("username");
+    console.log(username, score);
+
+    try {
+      const response = await axios.put(
+        "https://65af82562f26c3f2139af858.mockapi.io/scores",
+        {
+          username,
+          score,
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error updating score:", error);
+    }
+  };
+
   const resetGame = () => {
     getData();
     setCurrentCountryIndex(0);
@@ -47,6 +72,7 @@ const Americas = () => {
     setRemainingTries(5);
     setGameOver(false);
     setStreak(0);
+    setScore(0); // Reset score to 0 on Play Again
     setShowModal(false); // Close the modal on Play Again
   };
 
@@ -80,10 +106,12 @@ const Americas = () => {
       setErrorMessage("");
       setRemainingTries(5); // Reset remainingTries on correct guess
       setStreak((prevStreak) => prevStreak + 1); // Increment streak on correct guess
+      setScore((prevScore) => prevScore + 1); // Increment score on correct guess
 
       if (currentCountryIndex === shuffledCountries.length - 1) {
         setGameOver(true);
         setShowModal(true); // Display modal on game over
+        ScoreUpdate(); // Update score when the game is over
       }
     } else {
       setErrorMessage("Incorrect country name. Try again.");
@@ -93,6 +121,7 @@ const Americas = () => {
         setErrorMessage("You're out of tries. Game over!");
         setGameOver(true);
         setShowModal(true); // Display modal on game over
+        ScoreUpdate(); // Update score when the game is over
       }
     }
   };
@@ -131,6 +160,7 @@ const Americas = () => {
             className="img-fluid mb-3"
           />
           <p className="text-success">Streak: {streak} </p>
+          <p className="text-success">Score: {score} </p>
 
           <form onSubmit={nextCountry}>
             <div className="input-group mb-3">

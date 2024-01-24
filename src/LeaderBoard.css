@@ -1,0 +1,56 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.LeaderSec {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.lcontainer {
+  width: 50vw;
+  height: 40vw;
+}
+
+.LeaderBoardTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leaderboard-item {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.username {
+  font-weight: bold;
+  color: #555;
+}
+
+.score {
+  color: #555;
+}
+
+.MainTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.footerCheck {
+  margin-bottom: 100px;
+}
+
+.homeIcon {
+  margin-left: 1rem;
+  margin-top: 4rem;
+  cursor: pointer;
+}
