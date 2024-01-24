@@ -1,8 +1,10 @@
-# React + Vite
+# GuessTheFlags
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GuessTheFlags is a web-based game that challenges users to identify countries based on their flags. The game randomly selects a country from a specific region, displays its flag, and prompts the user to enter the country's name.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Multiple regions: The game includes flags from different regions, making it educational and entertaining.
+- Responsive Design: Playable on various devices, including desktops, tablets, and mobile phones.
+- Score Tracking: The game keeps track of your streak and overall score.
+- Modal Display: A modal appears when the game is over, displaying your final score.
